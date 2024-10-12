@@ -1,0 +1,232 @@
+1.Accept a single digit from the user and display it in words. For example, if digit entered is 9, display Nine.
+
+#include <stdio.h>
+int main() {
+    int digit;
+    printf("Enter a single digit (0-9): ");
+    scanf("%d", &digit);
+    switch (digit) {
+        case 0:
+            printf("Zero\n");
+            break;
+        case 1:
+            printf("One\n");
+            break;
+        case 2:
+            printf("Two\n");
+            break;
+        case 3:
+            printf("Three\n");
+            break;
+        case 4:
+            printf("Four\n");
+            break;
+        case 5:
+            printf("Five\n");
+            break;
+        case 6:
+            printf("Six\n");
+            break;
+        case 7:
+            printf("Seven\n");
+            break;
+        case 8:
+            printf("Eight\n");
+            break;
+        case 9:
+            printf("Nine\n");
+            break;
+        default:
+            printf("Invalid input! Please enter a single digit (0-9)\n");
+    }
+    return 0;
+}
+
+2.Write a program, which accepts two integers and an operator as a character (+ - * / ), performs the
+corresponding operation and displays the result.
+
+#include <stdio.h>
+int main() {
+    int num1, num2;
+    char operator;
+    float result;
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+    printf("Enter an operator (+, -, *, /): ");
+    scanf(" %c", &operator);
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            if (num2 == 0) {
+                printf("Error! Division by zero.\n");
+                return 1;
+            }
+            result = (float)num1 / num2;
+            break;
+        default:
+            printf("Error! Invalid operator.\n");
+            return 1;
+    }
+    printf("Result: %.2f\n", result);
+    return 0;
+}
+
+3. Accept two numbers in variables x and y from the user and perform the following operations
+	1. Equality Check if x is equal to y
+	2. Less Than Check if x is less than y
+	3. Quotient and Remainder Divide x by y and display the quotient and remainder                                                   4. Range : Accept a number and 	4.check if it lies between x and y (both inclusive)
+	5. Swap : Interchange x and y   
+
+#include <stdio.h>
+int main() {
+    int x, y;
+    int quotient, remainder;
+    int number;
+    printf("Enter two numbers (x and y): ");
+    scanf("%d %d", &x, &y);
+    // 1. Equality Check if x is equal to y
+    if (x == y) {
+        printf("x is equal to y.\n");
+    } else {
+        printf("x is not equal to y.\n");
+    }
+    // 2. Less Than Check if x is less than y
+    if (x < y) {
+        printf("x is less than y.\n");
+    } else {
+        printf("x is not less than y.\n");
+    }
+    // 3. Quotient and Remainder Divide x by y and display the quotient and remainder
+    quotient = x / y;
+    remainder = x % y;
+    printf("Quotient of x divided by y: %d\n", quotient);
+    printf("Remainder of x divided by y: %d\n", remainder);
+    // 4. Range : Accept a number and check if it lies between x and y (both inclusive)
+    printf("Enter a number to check if it lies between x and y: ");
+    scanf("%d", &number);
+    if (number >= x && number <= y) {
+        printf("%d lies between x and y (both inclusive).\n", number);
+    } else {
+        printf("%d does not lie between x and y (both inclusive).\n", number);
+    }
+    // 5. Swap : Interchange x and y
+    int temp = x;
+    x = y;
+    y = temp;
+    printf("After swapping, x = %d and y = %d\n", x, y);
+    return 0;
+}
+
+4.Accept radius from the user and write a program having menu with the following options and
+corresponding actions:
+1. Area of Circle
+2. Circumference of Circle
+3. Volume of Sphere
+
+#include <stdio.h>
+#include <math.h>
+#define PI 3.14159
+int main() {
+    int choice;
+    float radius;
+    printf("Enter the radius: ");
+    scanf("%f", &radius);
+    printf("\nMenu:\n");
+    printf("1. Area of Circle\n");
+    printf("2. Circumference of Circle\n");
+    printf("3. Volume of Sphere\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    switch (choice) {
+        case 1:
+            // Calculating the area of the circle
+            printf("Area of the circle: %.2f\n", PI * radius * radius);
+            break;
+        case 2:
+            // Calculating the circumference of the circle
+            printf("Circumference of the circle: %.2f\n", 2 * PI * radius);
+            break;
+        case 3:
+            // Calculating the volume of the sphere
+            printf("Volume of the sphere: %.2f\n", (4.0 / 3.0) * PI * pow(radius, 3));
+            break;
+        default:
+            printf("Invalid choice! Please enter a valid option.\n");
+    }
+
+    return 0;
+}
+
+5.Write a program having menu that has three options - add, subtract or multiply two fractions. The two
+fractions and the options are taken as input and the result is displayed as output. Each fraction is read as
+two integers, numerator and denominator.
+
+#include <stdio.h>
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+void simplifyFraction(int *numerator, int *denominator) {
+    int commonDivisor = gcd(*numerator, *denominator);
+    *numerator /= commonDivisor;
+    *denominator /= commonDivisor;
+}
+
+int main() {
+    int numerator1, denominator1;
+    int numerator2, denominator2;
+    char operation;
+    int resultNumerator, resultDenominator;
+
+    // Accepting the first fraction from the user
+    printf("Enter the first fraction (numerator denominator): ");
+    scanf("%d %d", &numerator1, &denominator1);
+
+    // Accepting the second fraction from the user
+    printf("Enter the second fraction (numerator denominator): ");
+    scanf("%d %d", &numerator2, &denominator2);
+
+    // Accepting the operation from the user
+    printf("Enter the operation (+, -, *): ");
+    scanf(" %c", &operation);
+
+    // Performing the operation based on the user's choice
+    switch (operation) {
+        case '+':
+            resultNumerator = numerator1 * denominator2 + numerator2 * denominator1;
+            resultDenominator = denominator1 * denominator2;
+            break;
+        case '-':
+            resultNumerator = numerator1 * denominator2 - numerator2 * denominator1;
+            resultDenominator = denominator1 * denominator2;
+            break;
+        case '*':
+            resultNumerator = numerator1 * numerator2;
+            resultDenominator = denominator1 * denominator2;
+            break;
+        default:
+            printf("Invalid operation! Please enter a valid operation.\n");
+            return 1; // Exiting the program with an error code
+    }
+
+    // Simplifying the result fraction
+    simplifyFraction(&resultNumerator, &resultDenominator);
+
+    // Displaying the result
+    printf("Result: %d / %d\n", resultNumerator, resultDenominator);
+
+    return 0;
+}
